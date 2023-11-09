@@ -1,0 +1,6 @@
+{"scripts": {
+    "dev": "nodemon",
+    "start": "node app.js",
+    "test": "echo  && exit 1"
+  }
+}
