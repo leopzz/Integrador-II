@@ -6,7 +6,9 @@ const ObterSequelize = () => {
         host: process.env.HOST,
         dialect: 'postgres',
         define: {
+            freezeTableName: true,
             timestamps: false,
+            schema: "dba"
           },
     }
 

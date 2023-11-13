@@ -1,4 +1,4 @@
-const { RepositorioBase } = require('../Repositorio/RepositorioBase');
+const { RepositorioBase } = require('./RepositorioBase');
 
 class RepositorioIngrediente extends RepositorioBase {
     constructor(sequelize, Ingrediente) {

@@ -7,7 +7,7 @@ const express = require('express');
 const app = express();
 app.use(express.json());
 
-app.use('/Cadastros', require('./Controllers/Cadastros'));
+app.use('/Ingrediente', require('./Controllers/Ingrediente'));
 
 app.listen(port);
 
