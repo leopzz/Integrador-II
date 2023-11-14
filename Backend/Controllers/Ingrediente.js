@@ -1,10 +1,10 @@
 const express = require('express');
 const router = express.Router();
 const { ObterSequelize } = require('../Servico/Conexao');
-const { acom_pad, Ingrediente } = require('../Entidades/Entidade');
+const { Ingrediente } = require('../Entidades/Ingrediente');
 const { RepositorioIngrediente } = require('../Repositorio/Repositorio');
 
-router.post('/Ingrediente/Pesquisa', async function (req, res) {
+router.post('/Pesquisa', async function (req, res) {
     const sequelize = ObterSequelize();
     const unitOfWork = await sequelize.transaction();
 
@@ -16,7 +16,7 @@ router.post('/Ingrediente/Pesquisa', async function (req, res) {
     } catch (error) {
         unitOfWork.rollback();
     }
-    res.json({});
+    res.json({ retorno: teste});
 });
 
 module.exports = router;
