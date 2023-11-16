@@ -16,7 +16,7 @@ router.post('/Pesquisa', async function (req, res) {
     } catch (error) {
         unitOfWork.rollback();
     }
-    res.json({ retorno: teste});
+    res.json({ retorno: teste });
 });
 
 module.exports = router;
