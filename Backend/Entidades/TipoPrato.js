@@ -1,7 +1,7 @@
 const { Sequelize, DataTypes } = require('sequelize');
-const { ObterSequelize } = require('../Servico/Conexao');
+const { sequelize } = require('../Servico/Conexao');
 
-const sequelize = ObterSequelize();
+
 
 const TipoPrato = sequelize.define('TipoPrato', {
   id_tp_prato: {

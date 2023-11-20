@@ -1,8 +1,8 @@
 const { RepositorioBase } = require('./RepositorioBase');
 
 class RepositorioIngrediente extends RepositorioBase {
-    constructor(sequelize, Ingrediente) {
-        super(sequelize, Ingrediente);
+    constructor(Ingrediente) {
+        super(Ingrediente);
     }
 }   
 

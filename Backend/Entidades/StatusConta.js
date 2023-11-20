@@ -1,7 +1,7 @@
 const { Sequelize, DataTypes } = require('sequelize');
-const { ObterSequelize } = require('../Servico/Conexao');
+const { sequelize } = require('../Servico/Conexao');
 
-const sequelize = ObterSequelize();
+
 
 
 const StatusConta = sequelize.define('StatusConta', {

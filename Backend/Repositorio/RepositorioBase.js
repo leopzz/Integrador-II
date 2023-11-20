@@ -1,8 +1,7 @@
-const { ObterSequelize } = require('../Servico/Conexao');
+const { sequelize } = require('../Servico/Conexao');
 
 class RepositorioBase {
-    constructor(sequelize, entidade) {
-        this.sequelize = sequelize;
+    constructor(entidade) {
         this.entidade = entidade;
     }
     BuscarTodos() {
