@@ -7,7 +7,7 @@ const express = require('express');
 const app = express();
 app.use(express.json());
 
-app.use('/Ingrediente', require('./Controllers/Ingrediente'));
+app.use('/Ingredientes', require('./Controllers/Ingrediente'));
 
 app.listen(port);
 

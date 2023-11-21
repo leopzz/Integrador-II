@@ -10,5 +10,9 @@ class RepositorioBase {
     BuscarPorCodigo(codigo) {
         return this.entidade.findByPk(codigo).then(obj => {return obj;});
     }
+    Salvar(obj) {
+        this.entidade.save({fields: obj})
+        return;
+    }
 }   
 module.exports = { RepositorioBase }
