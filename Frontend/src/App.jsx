@@ -4,6 +4,7 @@ import './App.css';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Ingrediente from './Views/Ingrediente';
 import Sabor from './Views/Sabor';
+import Login from './Views/telalogin';
 
 function App() {
   return (
@@ -11,6 +12,7 @@ function App() {
       <Routes>
         <Route path='/Cadastros/Ingrediente' element={<Ingrediente />} />
         <Route path='/Cadastros/Sabor' element={<Sabor />} />
+        <Route path='/telalogin' element={<Login />} />
       </Routes>
     </Router>
   );

@@ -1,0 +1,27 @@
+/* Estilos para o container do formulário de login */
+.container {
+  background-color: #fff;
+  padding: 2rem;
+  border-radius: 0.5rem;
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.1);
+}
+
+/* Estilos para os campos de entrada do formulário */
+.form-control {
+  margin-bottom: 1rem;
+}
+
+/* Estilos para os botões */
+.d-grid .btn {
+  padding: 0.5rem 1rem;
+  margin-bottom: 0.5rem;
+}
+
+/* Estilos para a seção de escolha de restaurantes */
+.text-center {
+  padding-top: 1rem;
+}
+
+.text-center h4 {
+  margin-bottom: 1rem;
+}
