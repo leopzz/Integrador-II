@@ -1,78 +1,44 @@
 const express = require('express');
-const router = express.Router();
-const { sequelize } = require('../Servico/Conexao');
-const { RepositorioIngrediente } = require('../Repositorio/Repositorio');
-const { JsonResult } = require('./ControllerBase');
+const IngredienteRouter = express.Router();
+const { JsonResult, ControllerBase } = require('./ControllerBase');
 const { Ingrediente } = require('../Entidades/Ingrediente')
+const { RepositorioIngrediente } = require('../Repositorio/Repositorio')
 
-router.post('/Pesquisa', async function (req, res) {
-    const unitOfWork = await sequelize.transaction();
-    const repIngrediente = new RepositorioIngrediente();
-    const ingredientes = await repIngrediente.BuscarAtivos();
-    try {
-        unitOfWork.commit();
-        JsonResult(res, true, ingredientes);
-    } catch (error) {
-        console.log(error)
-        unitOfWork.rollback();
-        JsonResult(res, false, "Ocorreu uma falha ao buscar os dados");
+class IngredienteController extends ControllerBase {
+    constructor() {
+        super(Ingrediente);
     }
-});
+}
 
-router.post('/BuscarPorCodigo', async function (req, res) {
-    const unitOfWork = await sequelize.transaction();
-    const repIngrediente = new RepositorioIngrediente();
-    const ingrediente = await repIngrediente.BuscarPorCodigo(req.body.id_ingrediente);
+const IController = new IngredienteController();
+
+IngredienteRouter.post("/Pesquisar", IController._pesquisar)
+IngredienteRouter.post("/Salvar", IController._salvar)
+IngredienteRouter.post("/Deletar", IController._deletar)
+IngredienteRouter.post("/BuscarPorCodigo", IController._buscarPorCodigo)
+IngredienteRouter.post("/ObterGridPesquisa", async function (req, res) {
     try {
-        unitOfWork.commit();
-        JsonResult(res, true, ingredientes);
-    } catch (error) {
-        console.log(error)
-        unitOfWork.rollback();
-        JsonResult(res, false, "Ocorreu uma falha ao buscar os dados");
-    }
-});
-
-router.post('/Salvar', async function (req, res) {
-    const unitOfWork = await sequelize.transaction();
-    const repIngrediente = new RepositorioIngrediente();
-    try {
-        var ingrediente = await repIngrediente.BuscarPorCodigo(req.body.id_ingrediente);
-
-        if (ingrediente == null)
-            ingrediente = await Ingrediente.build({});
-
-        console.log(ingrediente)
-        Object.keys(req.body).forEach((obj) => ingrediente[obj] = req.body[obj]);
-        ingrediente.save();
-        unitOfWork.commit();
-        JsonResult(res, true, ingrediente);
-    } catch (error) {
-        console.log(error)
-        unitOfWork.rollback();
-        JsonResult(res, false, "Ocorreu uma falha ao buscar os dados");
-    }
-});
-
-router.post('/Deletar', async function (req, res) {
-    const unitOfWork = await sequelize.transaction();
-    const repIngrediente = new RepositorioIngrediente();
-    try {
-        var ingrediente = await repIngrediente.BuscarPorCodigo(req.body.id_ingrediente);
-
-        if (ingrediente == null)
-            throw "";
-
-        ingrediente.destroy();
+        const repIngrediente = new RepositorioIngrediente();
+        const dados = await repIngrediente.BuscarTodos();
         
-        ingrediente.save();
-        unitOfWork.commit();
-        JsonResult(res, true);
-    } catch (error) {
+        var grid = { rows: [] };
+
+        for (var i = 0; i < dados.length;i++){
+            var item = dados[i];
+            grid.rows.push({
+                id_ingrediente: item.id_ingrediente, 
+                id: item.id_ingrediente, 
+                ds_ingrediente: item.ds_ingrediente, 
+                sn_ativo: item.sn_ativo == "S" ? "Ativo" : "Inativo"
+             });
+        }
+
+        res.json({ Status: true, Data: grid })
+    }
+    catch (error) {
         console.log(error)
-        unitOfWork.rollback();
         JsonResult(res, false, "Ocorreu uma falha ao buscar os dados");
     }
-});
+})
 
-module.exports = router;
+module.exports = { IngredienteRouter };

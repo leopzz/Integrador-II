@@ -1,0 +1,20 @@
+.ingrediente-background{
+    width: 100%;
+    background-color: rgb(153, 116, 116);
+    justify-content: center;
+    display: flex;
+    flex-wrap: wrap;
+}
+.row {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+.grid-background{
+    background-color: red;
+    display: flex;
+    width: 80%;
+    justify-content: center;
+    display: flex;
+}

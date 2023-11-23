@@ -1,9 +1,87 @@
 const express = require('express');
-const router = express.Router();
+const ControllerBaseRouter = express.Router();
 const { sequelize } = require('../Servico/Conexao');
+const { RepositorioBase } = require('../Repositorio/RepositorioBase');
+const { Ingrediente } = require('../Entidades/Ingrediente');
 
-function JsonResult(res, status = true, ObjetoRetorno = null){
-    return res.json({Status: status, Data: ObjetoRetorno})
+function JsonResult(res, status = true, ObjetoRetorno = null) {
+    return res.json({ Status: status, Data: ObjetoRetorno })
 }
 
-module.exports = {JsonResult};
+class ControllerBase {
+    constructor(entidade) {
+        this.entidade = entidade;
+    }
+    _pesquisar = async (req, res) => {
+        const unitOfWork = await sequelize.transaction();
+        console.log(this.entidade)
+        const repEntidade = new RepositorioBase(this.entidade);
+        const entidades = await repEntidade.BuscarTodos();
+        try {
+            unitOfWork.commit();
+            JsonResult(res, true, entidades);
+        } catch (error) {
+            console.log(error)
+            unitOfWork.rollback();
+            JsonResult(res, false, "Ocorreu uma falha ao buscar os dados");
+        }
+    };
+    _buscarPorCodigo = async (req, res) => {
+        const unitOfWork = await sequelize.transaction();
+        const repEntidade = new RepositorioBase(this.entidade);
+        const entidade = await repEntidade.BuscarPorCodigo(req.body[Object.keys(req.body)[0]]);
+        try {
+            unitOfWork.commit();
+            JsonResult(res, true, entidade);
+        } catch (error) {
+            console.log(error)
+            unitOfWork.rollback();
+            JsonResult(res, false, "Ocorreu uma falha ao buscar os dados");
+        }
+    };
+    _salvar = async (req, res) => {
+        const unitOfWork = await sequelize.transaction();
+        const repEntidade = new RepositorioBase(this.entidade);
+        try {
+            var entidade = await repEntidade.BuscarPorCodigo(req.body[Object.keys(req.body)[0]]);
+
+            if (entidade == null)
+                entidade = await entidade.build({});
+
+            console.log(entidade)
+            Object.keys(req.body).forEach((obj) => entidade[obj] = req.body[obj]);
+            entidade.save();
+            unitOfWork.commit();
+            JsonResult(res, true, entidade);
+        } catch (error) {
+            console.log(error)
+            unitOfWork.rollback();
+            JsonResult(res, false, "Ocorreu uma falha ao buscar os dados");
+        }
+    };
+    _deletar = async (req, res) => {
+        const unitOfWork = await sequelize.transaction();
+        const repEntidade = new RepositorioBase(this.entidade);
+        try {
+            var entidade = await repEntidade.BuscarPorCodigo(req.body[Object.keys(req.body)[0]]);
+
+            if (entidade == null)
+                throw "";
+
+            entidade.destroy();
+
+            entidade.save();
+            unitOfWork.commit();
+            JsonResult(res, true);
+        } catch (error) {
+            console.log(error)
+            unitOfWork.rollback();
+            JsonResult(res, false, "Ocorreu uma falha ao buscar os dados");
+        }
+    };
+}
+
+
+module.exports = { JsonResult };
+module.exports = { ControllerBaseRouter };
+module.exports = { ControllerBase };

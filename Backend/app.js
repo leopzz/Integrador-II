@@ -1,13 +1,16 @@
 const { Sequelize } = require('sequelize');
+const {IngredienteRouter} = require('./Controllers/Ingrediente') 
+const cors = require('cors');
+var bodyParser = require('body-parser')
 
 require("dotenv").config();
 const port = process.env.PORTA;
 
 const express = require('express');
 const app = express();
-app.use(express.json());
-
-app.use('/Ingredientes', require('./Controllers/Ingrediente'));
+app.use(cors())
+app.use(express.json())
+app.use('/Ingredientes', IngredienteRouter);
 
 app.listen(port);
 
