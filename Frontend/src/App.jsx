@@ -6,6 +6,7 @@ import Ingrediente from './Views/Ingrediente';
 import Sabor from './Views/Sabor';
 import Login from './Views/telalogin';
 import Home1 from './Views/home1';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 function App() {
   return (
