@@ -20,37 +20,26 @@ const rows = [
     createData('Frozen yoghurt', 159),
     createData('Ice cream sandwich', 237),
     createData('Eclair', 262),
-    createData('Eclair', 262),
-    createData('Eclair', 262),
-    createData('Eclair', 262),
-    createData('Eclair', 262),
 ];
 
 function GridView(props) {
-    var columns = ["Descrição", "Ativo"]
-    const funcao22 = () => {
-        console.log(111)
-    }
     const StyledTableRow = styled(TableRow)(({ theme }) => ({
         '&:nth-of-type(odd)': {
-          backgroundColor: theme.palette.action.hover,
+            backgroundColor: theme.palette.action.hover,
         },
         '&:last-child td, &:last-child th': {
-          border: 0,
+            border: 0,
         },
-      }));
+    }));
     return (
         <TableContainer component={Paper}>
             <Table sx={{ minWidth: 650 }} aria-label="a dense table" size="small">
                 <TableHead>
                     <TableRow>
-                        {columns.map((obj) => {
-                            console.log(obj)
+                        {props.columns.map((obj) => {
                             return (<TableCell align="left">{obj}</TableCell>)
                         }
                         )}
-
-                        <TableCell><FontAwesomeIcon icon="fa-solid fa-pen" /></TableCell>
                     </TableRow>
                 </TableHead>
                 <TableBody>
@@ -59,21 +48,18 @@ function GridView(props) {
                             {Object.keys(row).map((property) => {
                                 return (<TableCell align="left">{row[property]}</TableCell>)
                             })}
-                            <TableCell align="left"><a onClick={funcao22} href='javascript:void(0);'>Editar</a></TableCell>
+                            <TableCell align="left"><a onClick={props.onEdit} href='javascript:void(0);'>Editar</a></TableCell>
                         </StyledTableRow>
                     ))}
                 </TableBody>
                 <TableFooter>
                     <TableRow>
                         <TablePagination
-                            rowsPerPageOptions={[4]}
-                            rowsPerPage={4}
-                            count={rows.length}
-                            page={0}
-
-                        //   onPageChange={handleChangePage}
-                        //   onRowsPerPageChange={handleChangeRowsPerPage}
-                        //   ActionsComponent={TablePaginationActions}
+                            rowsPerPageOptions={[]}
+                            rowsPerPage={props.perPage}
+                            count={props.count}
+                            page={props.page}
+                            onPageChange={props.onPageChange}
                         />
                     </TableRow>
                 </TableFooter>
