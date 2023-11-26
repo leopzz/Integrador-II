@@ -16,11 +16,6 @@ function createData(name, calories) {
     return { name, calories };
 }
 
-const rows = [
-    createData('Frozen yoghurt', 159),
-    createData('Ice cream sandwich', 237),
-    createData('Eclair', 262),
-];
 
 function GridView(props) {
     const StyledTableRow = styled(TableRow)(({ theme }) => ({
@@ -36,19 +31,21 @@ function GridView(props) {
             <Table sx={{ minWidth: 650 }} aria-label="a dense table" size="small">
                 <TableHead>
                     <TableRow>
-                        {props.columns.map((obj) => {
-                            return (<TableCell align="left">{obj}</TableCell>)
+                        {Object.keys(props.columns).map((obj) => {
+                            return (<TableCell align="left">{props.columns[obj]}</TableCell>)
                         }
                         )}
                     </TableRow>
                 </TableHead>
                 <TableBody>
-                    {rows.map((row) => (
-                        <StyledTableRow key={row.name}>
+                    {props.rows.map((row) => (
+                        <StyledTableRow key={row.id}>
                             {Object.keys(row).map((property) => {
+                                if (!Object.keys(props.columns).includes(property))
+                                    return;
                                 return (<TableCell align="left">{row[property]}</TableCell>)
                             })}
-                            <TableCell align="left"><a onClick={props.onEdit} href='javascript:void(0);'>Editar</a></TableCell>
+                            <TableCell align="left"><a onClick={props.onEdit} id={row["id"]} href='javascript:void(0);'>Editar</a></TableCell>
                         </StyledTableRow>
                     ))}
                 </TableBody>

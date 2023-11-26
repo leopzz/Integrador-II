@@ -43,13 +43,21 @@ class ControllerBase {
         const unitOfWork = await sequelize.transaction();
         const repEntidade = new RepositorioBase(this.entidade);
         try {
-            var entidade = await repEntidade.BuscarPorCodigo(req.body[Object.keys(req.body)[0]]);
+            var entidade = null;
+            console.log(req.body)
+            console.log(Object.keys(req.body)[0])
+            console.log(req.body[Object.keys(req.body)[0]])
+            if (req.body[Object.keys(req.body)[0]] > 0){
+                entidade = await repEntidade.BuscarPorCodigo(req.body[Object.keys(req.body)[0]]);
+                if (entidade == null)
+                    throw "";
+                Object.keys(req.body).forEach((obj) => entidade[obj] = req.body[obj]);
+            }
+            if (entidade == null){
+                delete req.body[Object.keys(req.body)[0]]
+                entidade = await this.entidade.build(req.body);
+            }
 
-            if (entidade == null)
-                entidade = await entidade.build({});
-
-            console.log(entidade)
-            Object.keys(req.body).forEach((obj) => entidade[obj] = req.body[obj]);
             entidade.save();
             unitOfWork.commit();
             JsonResult(res, true, entidade);

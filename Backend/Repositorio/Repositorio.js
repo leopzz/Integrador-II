@@ -10,7 +10,8 @@ class RepositorioIngrediente extends RepositorioBase {
         return Ingrediente.findAll({
             where: {
                 sn_ativo: "S"
-            }
+            },
+            
         }).then(obj => { return obj; });
     }
 }

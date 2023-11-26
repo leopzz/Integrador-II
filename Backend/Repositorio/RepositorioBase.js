@@ -14,5 +14,11 @@ class RepositorioBase {
         this.entidade.save({fields: obj})
         return;
     }
+    ContarConsulta(){
+        return this.entidade.count()
+    }
+    Consultar(pagina, limite, filtros){ 
+        return this.entidade.findAll({offset: ((pagina)*limite), limit: limite, subQuery: false })
+    }
 }   
 module.exports = { RepositorioBase }

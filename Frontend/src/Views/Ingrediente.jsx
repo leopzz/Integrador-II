@@ -20,12 +20,15 @@ const OpcoesSituacao = [
 ]
 
 function Ingrediente() {
-    //auxiliares
+
+    //#region CAMPOS
+
+    // auxiliares
     const [abrirPesquisa, setAbrirPesquisa] = useState(true);
 
     // campos da entidade
-    const [descricao, setDescricao] = useState();
-    const [status, setStatus] = useState();
+    const [descricao, setDescricao] = useState("");
+    const [status, setStatus] = useState("S");
     const [id, setId] = useState(0);
 
     //campos grid
@@ -35,19 +38,68 @@ function Ingrediente() {
     const [perPage, setPerPage] = useState(5)
     const [page, setPage] = useState(0)
 
-    //funções de requisição
-    const ObterGridPadrao = async (dados) => {
-        await axios.post("http://localhost:3000/Ingredientes/ObterGridPesquisa").then((res) => {
+    //#endregion CAMPOS
 
+    //#region GRID
+    const CarregarGrid = async (dados) => {
+        await axios.post("http://localhost:3000/Ingredientes/ObterGridPesquisa", dados).then((res) => {
+            var grid = res.data.Data;
+            setColumns(grid.columns);
+            setRows(grid.rows);
+            setCount(grid.count);
         })
     }
-    useEffect(() => { ObterGridPadrao() }, [])
-    const fecharPesquisa = () => {setAbrirPesquisa(!abrirPesquisa);}
-    const pageChange = (event, newPage) => {
-        setPage(newPage)
-        ObterGridPadrao();
+    useEffect(() => { CarregarGrid({ page: 0, limit: 5 }) }, [])
+    const pageChange = (event, newPage, a) => { setPage(newPage); CarregarGrid({ page: newPage, limit: 5 }); }
+    const pesquisarClick = () => {
+        var filtros = { descricao: pesquisaDescricao, status: pesquisaStatus }
+        console.log(filtros)
+        CarregarGrid({ page: page, limit: 5 });
+    }
+    //#endregion GRID
+
+    //#region OUTROS
+    const fecharPesquisa = () => { setAbrirPesquisa(!abrirPesquisa); }
+    const limparCampos = () => {
+        setAbrirPesquisa(true);
+        setDescricao("");
+        setId(0);
+        setStatus("S");
+    }
+    //#endregion OUTROS
+
+    //#region CADASTRO
+    const salvarClick = async () => {
+        var dados = {
+            id_ingrediente: id,
+            ds_ingrediente: descricao,
+            sn_ativo: status
+        }
+        console.log(dados)
+        await axios.post("http://localhost:3000/Ingredientes/Salvar", dados).then((res) => {
+            if (res.data.Status == true) {
+                CarregarGrid({ page: page, limit: 5 });
+                setAbrirPesquisa(true);
+                limparCampos()
+                toast.success("Salvo com sucesso")
+            } else {
+                toast.error("Ocorreu um erro ao salvar os dados")
+            }
+        })
+        CarregarGrid({ page: page, limit: 5 });
+
     }
 
+    const preencherCadastro = async (e) => {
+        setAbrirPesquisa(false);
+        await axios.post("http://localhost:3000/Ingredientes/BuscarPorCodigo", { Codigo: e.target.id }).then((res) => {
+            var data = res.data.Data;
+            setDescricao(data.ds_ingrediente);
+            setStatus(data.sn_ativo);
+            setId(data.id_ingrediente);
+        })
+    }
+    //#endregion CADASTRO
     return (
         <>
             <ToastContainer></ToastContainer>
@@ -55,6 +107,7 @@ function Ingrediente() {
                 <Col md={2}><SidebarMenu></SidebarMenu></Col>
                 <Col md={10} style={{ justifyContent: "center", display: "flex" }}>
                     <Col md={11}>
+                        {/* AQUI FICA A PESQUISA: */}
                         <Row md={12} style={{ marginBottom: "2rem", marginTop: "1rem" }}>
                             <h2 style={{ marginBottom: "1rem" }}>Ingredientes</h2>
                             <Container className='col-md-12 pt-3 pb-1' style={{ backgroundColor: "red" }}>
@@ -65,7 +118,7 @@ function Ingrediente() {
                                     <Row id="Teste" style={{ transition: "0.3s" }}>
                                         <Col md={12}>
                                             <GridView
-                                                onEdit={() => { }}
+                                                onEdit={preencherCadastro}
                                                 columns={columns}
                                                 rows={rows}
                                                 onPageChange={pageChange}
@@ -75,7 +128,7 @@ function Ingrediente() {
                                             >
                                             </GridView>
                                             <Col className="d-flex col-12 justify-content-end">
-                                                <Button variant="secondary mb-2 mt-2" type="submit">
+                                                <Button variant="secondary mb-2 mt-2" type="submit" onClick={pesquisarClick}>
                                                     Pesquisar
                                                 </Button>
                                             </Col>
@@ -84,11 +137,13 @@ function Ingrediente() {
                                 </Collapse>
                             </Container>
                         </Row>
+                        {/* AQUI FICA O CADASTRO */}
                         <Row md={12}>
                             <Container className='col-md-12' style={{ backgroundColor: "green" }}>
                                 <Row md={12}>
                                     <Col md={12}>
                                         <Form>
+                                            {/* AQUI FICAM OS CAMPOS */}
                                             <Row className="mb-3">
                                                 <PropertyEntity
                                                     id="sn_descricao"
@@ -96,30 +151,30 @@ function Ingrediente() {
                                                     default=""
                                                     colSize={9}
                                                     type="string"
-                                                    onChangeFunction={(e) => {
-                                                        console.log(entity)
-                                                        setDescricao(e.target.value)
-                                                    }}
+                                                    value={descricao}
+                                                    onChangeFunction={(e) => setDescricao(e.target.value)}
                                                 />
                                                 <PropertyEntity
                                                     id="sn_ativo"
                                                     data={OpcoesSituacao}
                                                     label="Situação"
                                                     default="S"
+                                                    value={status}
                                                     colSize={3}
                                                     type="select"
+                                                    onChangeFunction={(e) => setStatus(e.target.value)}
                                                 />
                                             </Row>
                                             <Row style={{ justifyContent: "end" }}>
                                                 <Col md={1}>
                                                     {id > 0 &&
-                                                        <Button variant="light" type="submit">
+                                                        <Button variant="light" onClick={limparCampos}>
                                                             Cancelar
                                                         </Button>
                                                     }
                                                 </Col>
                                                 <Col md={1}>
-                                                    <Button variant="success" type="submit">
+                                                    <Button variant="success" onClick={salvarClick}>
                                                         Salvar
                                                     </Button>
                                                 </Col>
@@ -132,8 +187,6 @@ function Ingrediente() {
                     </Col>
                 </Col>
             </Row>
-
-
         </>
     );
 };
