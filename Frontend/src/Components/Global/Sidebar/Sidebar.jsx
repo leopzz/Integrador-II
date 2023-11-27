@@ -4,6 +4,11 @@ import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 
+
+const handleExternalNavigation = (url) => {
+    window.location.href = url;
+  };
+
 function SidebarMenu() {
     return (
         <>
@@ -15,12 +20,24 @@ function SidebarMenu() {
                     </div>
                     <hr class="divider"></hr>
                     <Menu>
-                        <SubMenu label="Charts">
-                            <MenuItem> Pie charts </MenuItem>
-                            <MenuItem> Line charts </MenuItem>
+                        <MenuItem onClick={() => handleExternalNavigation('http://localhost:5173/home1')}>Home</MenuItem>
+                        <MenuItem> Comanda </MenuItem>
+                        <MenuItem> Pedido </MenuItem>
+                        <MenuItem> Usuarios </MenuItem>
+                        <SubMenu label="Cadastros">
+                            <MenuItem> Sabores </MenuItem>
+                            <MenuItem> Bebida </MenuItem>
+                            <MenuItem> Acompanhamento </MenuItem>
+                            <MenuItem> Drinks </MenuItem>
+                            <MenuItem> Entradas </MenuItem>
+                            <MenuItem> Massas </MenuItem>
+                            <MenuItem> Pratos </MenuItem>
+                            <MenuItem> Vinhos </MenuItem>
                         </SubMenu>
-                        <MenuItem> Documentation </MenuItem>
-                        <MenuItem> Calendar </MenuItem>
+                        <SubMenu label="Ingredientes">
+                            <MenuItem onClick={() => handleExternalNavigation('http://localhost:5173/Cadastros/Ingrediente')}>Ingredientes Pizza</MenuItem>
+                            <MenuItem onClick={() => handleExternalNavigation('http://localhost:5173/Cadastros/Ingrediente_Drinks')}>Ingredientes Drinks</MenuItem>
+                        </SubMenu>
                     </Menu>
                 </Sidebar>
             </Row>

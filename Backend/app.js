@@ -1,5 +1,6 @@
 const { Sequelize } = require('sequelize');
 const {IngredienteRouter} = require('./Controllers/Ingrediente') 
+const {Ingrediente_DrinksRouter} = require('./Controllers/Ingrediente_Drinks') 
 const cors = require('cors');
 var bodyParser = require('body-parser')
 
@@ -11,6 +12,7 @@ const app = express();
 app.use(cors())
 app.use(express.json())
 app.use('/Ingredientes', IngredienteRouter);
+app.use('/Ingrediente_Drinks', Ingrediente_DrinksRouter);
 
 app.listen(port);
 

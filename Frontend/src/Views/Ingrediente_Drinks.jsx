@@ -18,7 +18,7 @@ const OpcoesSituacao = [
     { text: "Inativo", value: "N" }
 ]
 
-function Ingrediente() {
+function Ingrediente_Drinks() {
 
     //#region CAMPOS
 
@@ -41,7 +41,7 @@ function Ingrediente() {
 
     //#region GRID
     const CarregarGrid = async (dados) => {
-        await axios.post("http://localhost:3000/Ingredientes/ObterGridPesquisa", dados).then((res) => {
+        await axios.post("http://localhost:3000/Ingrediente_Drinks/ObterGridPesquisa", dados).then((res) => {
             var grid = res.data.Data;
             setColumns(grid.columns);
             setRows(grid.rows);
@@ -70,12 +70,12 @@ function Ingrediente() {
     //#region CADASTRO
     const salvarClick = async () => {
         var dados = {
-            id_ingrediente: id,
-            ds_ingrediente: descricao,
+            id_drink_ingred: id,
+            ds_drink_ingred: descricao,
             sn_ativo: status
         }
         console.log(dados)
-        await axios.post("http://localhost:3000/Ingredientes/Salvar", dados).then((res) => {
+        await axios.post("http://localhost:3000/Ingrediente_Drinks/Salvar", dados).then((res) => {
             if (res.data.Status == true) {
                 CarregarGrid({ page: page, limit: 5 });
                 setAbrirPesquisa(true);
@@ -91,11 +91,11 @@ function Ingrediente() {
 
     const preencherCadastro = async (e) => {
         setAbrirPesquisa(false);
-        await axios.post("http://localhost:3000/Ingredientes/BuscarPorCodigo", { Codigo: e.target.id }).then((res) => {
+        await axios.post("http://localhost:3000/Ingrediente_Drinks/BuscarPorCodigo", { Codigo: e.target.id }).then((res) => {
             var data = res.data.Data;
-            setDescricao(data.ds_ingrediente);
+            setDescricao(data.ds_drink_ingred);
             setStatus(data.sn_ativo);
-            setId(data.id_ingrediente);
+            setId(data.id_drink_ingred);
         })
     }
     //#endregion CADASTRO
@@ -108,7 +108,7 @@ function Ingrediente() {
                     <Col md={11}>
                         {/* AQUI FICA A PESQUISA: */}
                         <Row md={12} style={{ marginBottom: "2rem", marginTop: "1rem" }}>
-                            <h2 style={{ marginBottom: "1rem" }}>Ingredientes</h2>
+                            <h2 style={{ marginBottom: "1rem" }}>Ingredientes Drinks</h2>
                             <Container className='col-md-12 pt-3 pb-1' style={{ backgroundColor: "red" }}>
                                 <Button variant="secondary mb-2" type="submit" onClick={fecharPesquisa}>
                                     Ingredientes
@@ -191,4 +191,4 @@ function Ingrediente() {
 };
 
 
-export default Ingrediente;
+export default Ingrediente_Drinks;

@@ -1,5 +1,7 @@
 const { Sequelize, DataTypes } = require('sequelize');
 const { sequelize } = require('../Servico/Conexao');
+const { Drink } = require('../Entidades/Drink')
+const { DrinkIngrediente } = require('../Entidades/DrinkIngrediente')
 
 const IngredienteDrink = sequelize.define('IngredienteDrink', {
   id_ingred_drink: {
