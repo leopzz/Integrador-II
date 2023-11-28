@@ -1,0 +1,6 @@
+.shadowzao {
+    box-shadow: 0 0 10px 5px #2b029c,
+              0 0 20px 7px rgb(110, 4, 177),
+              0 0 25px 20px #8a2be2,
+              0 0 20px 20px #ff1493;
+}

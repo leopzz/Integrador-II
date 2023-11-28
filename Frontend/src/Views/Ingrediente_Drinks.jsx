@@ -108,8 +108,8 @@ function Ingrediente_Drinks() {
                     <Col md={11}>
                         {/* AQUI FICA A PESQUISA: */}
                         <Row md={12} style={{ marginBottom: "2rem", marginTop: "1rem" }}>
-                            <h2 style={{ marginBottom: "1rem" }}>Ingredientes Drinks</h2>
-                            <Container className='col-md-12 pt-3 pb-1' style={{ backgroundColor: "red" }}>
+                            <h2 style={{ marginBottom: "1rem" , color: "#fff"}} >Ingredientes Drinks</h2>
+                            <Container className='col-md-12 pt-3 pb-1 ' style={{ backgroundColor: "rgb(39, 51, 163)" }}>
                                 <Button variant="secondary mb-2" type="submit" onClick={fecharPesquisa}>
                                     Ingredientes
                                 </Button>
@@ -138,7 +138,7 @@ function Ingrediente_Drinks() {
                         </Row>
                         {/* AQUI FICA O CADASTRO */}
                         <Row md={12}>
-                            <Container className='col-md-12' style={{ backgroundColor: "green" }}>
+                            <Container className='col-md-12' style={{ backgroundColor: "rgb(39, 51, 163)" }}>
                                 <Row md={12}>
                                     <Col md={12}>
                                         <Form>

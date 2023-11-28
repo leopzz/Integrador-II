@@ -1,7 +1,7 @@
 const { RepositorioBase } = require('./RepositorioBase');
 const { Ingrediente } = require('../Entidades/Ingrediente');
 const { DrinkIngrediente } = require('../Entidades/DrinkIngrediente');
-const { where } = require('sequelize');
+
 
 class RepositorioIngrediente extends RepositorioBase {
     constructor() {
@@ -31,5 +31,4 @@ class RepositorioIngrediente_Drinks extends RepositorioBase {
     }
 }
 
-module.exports = { RepositorioIngrediente }
-module.exports = { RepositorioIngrediente_Drinks }
+module.exports = { RepositorioIngrediente , RepositorioIngrediente_Drinks}

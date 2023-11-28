@@ -11,6 +11,7 @@ function Home1() {
 
 
                     <SidebarMenu></SidebarMenu>
+                    
                 </div>
 
 

@@ -4,6 +4,9 @@
     flex-direction: column;
     margin: 0px;
     padding-top: 10px;
+    
+    
+    
     /* Espaço adicional para a logo */
 }
 
@@ -12,15 +15,26 @@
     height: 1px;
     background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0));
     margin-bottom: 20px;
+    
     /* Espaçamento abaixo da barra */
 }
 .sidebar-background{
-    background-color: rgb(198, 198, 198);
+    background-color: rgb(39, 51, 163)
 }
 
 .teste {
-    background-color: red;
+    background-color: rgb(39, 51, 163)
 }
 .teste2 {
-    background-color: blue;
+    background-color: rgb(39, 51, 163)
+}
+
+.HOVERZAO {
+    color: #fff;
+    background-color: rgb(39, 51, 163);
+    
+}
+
+.HOVERZAO:hover {
+    color:black
 }

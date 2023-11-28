@@ -1,12 +1,12 @@
 const express = require('express');
 const Ingrediente_DrinksRouter = express.Router();
 const { JsonResult, ControllerBase } = require('./ControllerBase');
-const { IngredienteDrink } = require('../Entidades/IngredienteDrink')
+const { DrinkIngrediente } = require('../Entidades/DrinkIngrediente')
 const { RepositorioIngrediente_Drinks } = require('../Repositorio/Repositorio')
 
 class Ingrediente_DrinksController extends ControllerBase {
     constructor() {
-        super(IngredienteDrink);
+        super(DrinkIngrediente);
     }
 }
 

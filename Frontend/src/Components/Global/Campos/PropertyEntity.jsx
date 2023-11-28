@@ -7,7 +7,7 @@ export default function PropertyEntity(props) {
         <Col md={props.colSize}>
             {props.type == "select" &&
                 <Form.Group controlId={props.id}>
-                    <Form.Label>{props.label}</Form.Label>
+                    <Form.Label style={{color: "#fff"}}>{props.label}</Form.Label>
                     <Form.Select defaultValue={props.default} onChange={props.onChangeFunction}> 
                         {props.data.map((obj) => {
                             return (<option value={obj.value}>{obj.text}</option>)
@@ -17,7 +17,7 @@ export default function PropertyEntity(props) {
             }
             {props.type == "string" &&
                 <Form.Group as={Col} controlId={props.id}>
-                    <Form.Label>{props.label}</Form.Label>
+                    <Form.Label style={{color: "#fff"}}>{props.label}</Form.Label>
                     <Form.Control type="string" placeholder={props.placeholder} onChange={props.onChangeFunction} value={props.value} />
                 </Form.Group>
             }

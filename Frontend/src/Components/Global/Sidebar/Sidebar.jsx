@@ -12,31 +12,31 @@ const handleExternalNavigation = (url) => {
 function SidebarMenu() {
     return (
         <>
-            <Row md={12} className='h-100' style={{minHeight: "100vh"}}>
-                <Sidebar className='teste2'>
-                    <div class="sidebar-div">
-                        <svg xmlns="http://www.w3.org/2000/svg" height="100px" viewBox="0 0 512 512"><path d="M399 384.2C376.9 345.8 335.4 320 288 320H224c-47.4 0-88.9 25.8-111 64.2c35.2 39.2 86.2 63.8 143 63.8s107.8-24.7 143-63.8zM0 256a256 256 0 1 1 512 0A256 256 0 1 1 0 256zm256 16a72 72 0 1 0 0-144 72 72 0 1 0 0 144z" /></svg>
-                        <span>Nome do Funcionário</span>
+            <Row md={12 } className='h-100' style={{minHeight: "100vh"}}  >
+                <Sidebar className='teste2'backgroundColor="rgb(39, 51, 163)" >
+                    <div class="sidebar-div" style={{backgroundColor: "rgb(39, 51, 163)"}}  >
+                        <svg  xmlns="http://www.w3.org/2000/svg" height="100px" viewBox="0 0 512 512"><path d="M399 384.2C376.9 345.8 335.4 320 288 320H224c-47.4 0-88.9 25.8-111 64.2c35.2 39.2 86.2 63.8 143 63.8s107.8-24.7 143-63.8zM0 256a256 256 0 1 1 512 0A256 256 0 1 1 0 256zm256 16a72 72 0 1 0 0-144 72 72 0 1 0 0 144z" /></svg>
+                        <span style={{color: "#fff"}}>Nome do Funcionário</span>
                     </div>
-                    <hr class="divider"></hr>
-                    <Menu>
-                        <MenuItem onClick={() => handleExternalNavigation('http://localhost:5173/home1')}>Home</MenuItem>
-                        <MenuItem> Comanda </MenuItem>
-                        <MenuItem> Pedido </MenuItem>
-                        <MenuItem> Usuarios </MenuItem>
-                        <SubMenu label="Cadastros">
-                            <MenuItem> Sabores </MenuItem>
-                            <MenuItem> Bebida </MenuItem>
-                            <MenuItem> Acompanhamento </MenuItem>
-                            <MenuItem> Drinks </MenuItem>
-                            <MenuItem> Entradas </MenuItem>
-                            <MenuItem> Massas </MenuItem>
-                            <MenuItem> Pratos </MenuItem>
-                            <MenuItem> Vinhos </MenuItem>
+                    <hr class="divider" ></hr>
+                    <Menu   >
+                        <MenuItem onClick={() => handleExternalNavigation('http://localhost:5173/home1')} className='HOVERZAO'>Home</MenuItem>
+                        <MenuItem className='HOVERZAO' > Comanda </MenuItem>
+                        <MenuItem className='HOVERZAO'> Pedido </MenuItem>
+                        <MenuItem className='HOVERZAO'> Usuarios </MenuItem>
+                        <SubMenu label="Cadastros" className='HOVERZAO'>
+                            <MenuItem className='HOVERZAO'> Sabores </MenuItem>
+                            <MenuItem className='HOVERZAO'> Bebida </MenuItem>
+                            <MenuItem className='HOVERZAO'> Acompanhamento </MenuItem>
+                            <MenuItem className='HOVERZAO'> Drinks </MenuItem>
+                            <MenuItem className='HOVERZAO'> Entradas </MenuItem>
+                            <MenuItem className='HOVERZAO'> Massas </MenuItem>
+                            <MenuItem className='HOVERZAO'> Pratos </MenuItem>
+                            <MenuItem className='HOVERZAO'> Vinhos </MenuItem>
                         </SubMenu>
-                        <SubMenu label="Ingredientes">
-                            <MenuItem onClick={() => handleExternalNavigation('http://localhost:5173/Cadastros/Ingrediente')}>Ingredientes Pizza</MenuItem>
-                            <MenuItem onClick={() => handleExternalNavigation('http://localhost:5173/Cadastros/Ingrediente_Drinks')}>Ingredientes Drinks</MenuItem>
+                        <SubMenu label="Ingredientes" className='HOVERZAO'>
+                            <MenuItem onClick={() => handleExternalNavigation('http://localhost:5173/Cadastros/Ingrediente')} className='HOVERZAO'>Ingredientes Pizza</MenuItem>
+                            <MenuItem onClick={() => handleExternalNavigation('http://localhost:5173/Cadastros/Ingrediente_Drinks')} className='HOVERZAO'>Ingredientes Drinks</MenuItem>
                         </SubMenu>
                     </Menu>
                 </Sidebar>
