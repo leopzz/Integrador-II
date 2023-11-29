@@ -25,12 +25,12 @@ function SidebarMenu() {
                         <MenuItem className='HOVERZAO'> Pedido </MenuItem>
                         <MenuItem className='HOVERZAO'> Usuarios </MenuItem>
                         <SubMenu label="Cadastros" className='HOVERZAO'>
-                            <MenuItem className='HOVERZAO'> Sabores </MenuItem>
-                            <MenuItem className='HOVERZAO'> Bebida </MenuItem>
-                            <MenuItem className='HOVERZAO'> Acompanhamento </MenuItem>
-                            <MenuItem className='HOVERZAO'> Drinks </MenuItem>
-                            <MenuItem className='HOVERZAO'> Entradas </MenuItem>
-                            <MenuItem className='HOVERZAO'> Massas </MenuItem>
+                            <MenuItem onClick={() => handleExternalNavigation('http://localhost:5173/Cadastros/Sabores')} className='HOVERZAO'> Sabores </MenuItem>
+                            <MenuItem onClick={() => handleExternalNavigation('http://localhost:5173/Cadastros/Bebida')} className='HOVERZAO'> Bebida </MenuItem>
+                            <MenuItem onClick={() => handleExternalNavigation('http://localhost:5173/Cadastros/Acompanhamento')} className='HOVERZAO'> Acompanhamento </MenuItem>
+                            <MenuItem onClick={() => handleExternalNavigation('http://localhost:5173/Cadastros/Drink')} className='HOVERZAO'> Drinks </MenuItem>
+                            <MenuItem onClick={() => handleExternalNavigation('http://localhost:5173/Cadastros/Entrada')} className='HOVERZAO'> Entradas </MenuItem>
+                            <MenuItem onClick={() => handleExternalNavigation('http://localhost:5173/Cadastros/Massa')}className='HOVERZAO'> Massas </MenuItem>
                             <MenuItem className='HOVERZAO'> Pratos </MenuItem>
                             <MenuItem className='HOVERZAO'> Vinhos </MenuItem>
                         </SubMenu>

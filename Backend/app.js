@@ -1,6 +1,12 @@
 const { Sequelize } = require('sequelize');
 const {IngredienteRouter} = require('./Controllers/Ingrediente') 
 const {Ingrediente_DrinksRouter} = require('./Controllers/Ingrediente_Drinks') 
+const {SaboresRouter} = require('./Controllers/Sabores') 
+const {BebidaRouter} = require('./Controllers/Bebida') 
+const {AcompanhamentoRouter} = require('./Controllers/Acompanhamento') 
+const {DrinkRouter} = require('./Controllers/Drink') 
+const {EntradaRouter} = require('./Controllers/Entrada') 
+const {MassaRouter} = require('./Controllers/Massa') 
 const cors = require('cors');
 var bodyParser = require('body-parser')
 
@@ -13,6 +19,12 @@ app.use(cors())
 app.use(express.json())
 app.use('/Ingredientes', IngredienteRouter);
 app.use('/Ingrediente_Drinks', Ingrediente_DrinksRouter);
+app.use('/Sabores', SaboresRouter);
+app.use('/Bebidas', BebidaRouter);
+app.use('/Acompanhamentos', AcompanhamentoRouter);
+app.use('/Drinks', DrinkRouter);
+app.use('/Entradas', EntradaRouter);
+app.use('/Massas', MassaRouter);
 
 app.listen(port);
 

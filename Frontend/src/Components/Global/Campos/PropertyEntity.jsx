@@ -21,6 +21,12 @@ export default function PropertyEntity(props) {
                     <Form.Control type="string" placeholder={props.placeholder} onChange={props.onChangeFunction} value={props.value} />
                 </Form.Group>
             }
+            {props.type == "numeric" &&
+                <Form.Group as={Col} controlId={props.id}>
+                    <Form.Label style={{color: "#fff"}}>{props.label}</Form.Label>
+                    <Form.Control type="number" min={'0.01'} step={'0.001'} placeholder={props.placeholder} onChange={props.onChangeFunction} value={props.value} />
+                </Form.Group>
+            }
         </Col>
     )
 } 
