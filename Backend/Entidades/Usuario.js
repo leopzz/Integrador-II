@@ -1,13 +1,11 @@
 const { Sequelize, DataTypes } = require('sequelize');
 const { sequelize } = require('../Servico/Conexao');
-
-
+const { Funcao } = require('../Entidades/Funcao');
 
 const Usuario = sequelize.define('Usuario', {
   id_usuario: {
-    type: DataTypes.INTEGER,
-    allowNull: false,
-    autoIncrement: true,
+    type: DataTypes.STRING,
+    allowNull: true,
     primaryKey: true
   },  
   id_funcao: {
@@ -22,4 +20,4 @@ const Usuario = sequelize.define('Usuario', {
 });
 
 
-module.exports = { Acompanhamento }
+module.exports = { Usuario }

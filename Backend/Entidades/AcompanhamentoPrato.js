@@ -1,5 +1,6 @@
 const { Sequelize, DataTypes } = require('sequelize');
 const { sequelize } = require('../Servico/Conexao');
+const { Acompanhamento } = require('../Entidades/Acompanhamento');
 
 const AcompanhamentoPrato = sequelize.define('AcompanhamentoPrato', {
   id_acom_pad: {

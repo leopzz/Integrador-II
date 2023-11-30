@@ -1,6 +1,7 @@
 const { RepositorioBase } = require('./RepositorioBase');
 const { Ingrediente } = require('../Entidades/Ingrediente');
 const { DrinkIngrediente } = require('../Entidades/DrinkIngrediente');
+const { Usuario } = require('../Entidades/Usuario');
 
 
 class RepositorioIngrediente extends RepositorioBase {
@@ -31,4 +32,10 @@ class RepositorioIngrediente_Drinks extends RepositorioBase {
     }
 }
 
-module.exports = { RepositorioIngrediente , RepositorioIngrediente_Drinks}
+class RepositorioUsuario extends RepositorioBase {
+    constructor() {
+        super(Usuario);
+    }
+}
+
+module.exports = { RepositorioIngrediente , RepositorioIngrediente_Drinks, RepositorioUsuario}
