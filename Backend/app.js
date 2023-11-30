@@ -7,6 +7,8 @@ const {AcompanhamentoRouter} = require('./Controllers/Acompanhamento')
 const {DrinkRouter} = require('./Controllers/Drink') 
 const {EntradaRouter} = require('./Controllers/Entrada') 
 const {MassaRouter} = require('./Controllers/Massa') 
+const {PratoRouter} = require('./Controllers/Prato') 
+const {VinhoRouter} = require('./Controllers/Vinho') 
 const cors = require('cors');
 var bodyParser = require('body-parser')
 
@@ -25,6 +27,8 @@ app.use('/Acompanhamentos', AcompanhamentoRouter);
 app.use('/Drinks', DrinkRouter);
 app.use('/Entradas', EntradaRouter);
 app.use('/Massas', MassaRouter);
+app.use('/Pratos', PratoRouter);
+app.use('/Vinhos', VinhoRouter);
 
 app.listen(port);
 

@@ -7,6 +7,9 @@ const { Acompanhamento } = require('../Entidades/Acompanhamento')
 const { Drink } = require('../Entidades/Drink')
 const { Entrada } = require('../Entidades/Entrada')
 const { Massa } = require('../Entidades/Massa')
+const { Prato } = require('../Entidades/Prato');
+const { TipoPrato } = require('../Entidades/TipoPrato');
+const { Vinho } = require('../Entidades/Vinho');
 
 
 class RepositorioIngrediente extends RepositorioBase {
@@ -121,6 +124,37 @@ class RepositorioMassa extends RepositorioBase {
     }
 }
 
-module.exports = { RepositorioIngrediente , RepositorioIngrediente_Drinks , RepositorioSabores , RepositorioBebida , RepositorioAcompanhamento , RepositorioDrink , RepositorioEntrada , RepositorioMassa}
+class RepositorioVinho extends RepositorioBase {
+    constructor() {
+        super(Vinho);
+    }
+    BuscarAtivos() {
+        return Vinho.findAll({
+            where: {
+                sn_ativo: "S"
+            },
+            
+        }).then(obj => { return obj; });
+    }
+}
+
+class RepositorioPrato extends RepositorioBase {
+    constructor() {
+        super(Prato);
+    }
+    BuscarAtivos() {
+        return Prato.findAll({
+            where: {
+                sn_ativo: "S"
+            },
+            
+        }).then(obj => { return obj; });
+    }
+    Consultar(pagina, limite, filtros){ 
+        return this.entidade.findAll({offset: ((pagina)*limite), limit: limite, subQuery: false, include:TipoPrato })
+    }
+}
+
+module.exports = { RepositorioIngrediente , RepositorioIngrediente_Drinks , RepositorioSabores , RepositorioBebida , RepositorioAcompanhamento , RepositorioDrink , RepositorioEntrada , RepositorioMassa ,RepositorioVinho, RepositorioPrato}
 
 
