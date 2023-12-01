@@ -1,5 +1,9 @@
 const { Sequelize, DataTypes } = require('sequelize');
 const { sequelize } = require('../Servico/Conexao');
+const { ItemPedido } = require('../Entidades/ItemPedido');
+const { Tamanho } = require('../Entidades/Tamanho');
+const { Borda } = require('../Entidades/Borda');
+const { Massa } = require('../Entidades/Massa');
 
 
 

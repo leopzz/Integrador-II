@@ -1,5 +1,14 @@
 const { Sequelize, DataTypes } = require('sequelize');
 const { sequelize } = require('../Servico/Conexao');
+const { Pedido } = require('../Entidades/Pedido');
+const { Pizza } = require('../Entidades/Pizza');
+const { PratoMontado } = require('../Entidades/PratoMontado');
+const { Entrada } = require('../Entidades/Entrada');
+const { Bebida } = require('../Entidades/Bebida');
+const { Drink } = require('../Entidades/Drink');
+const { Vinho } = require('../Entidades/Vinho');
+const { StatusPedido } = require('../Entidades/StatusPedido');
+const { Usuario } = require('../Entidades/Usuario');
 
 const ItemPedido = sequelize.define('ItemPedido', {
   id_itpedido: {
@@ -79,6 +88,9 @@ const ItemPedido = sequelize.define('ItemPedido', {
   },
   dh_cancelamento: {
     type: DataTypes.DATE
+  },
+  ds_descricao: {
+    type: DataTypes.STRING
   },
 }, {
   tableName: "itpedido",

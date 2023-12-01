@@ -6,11 +6,14 @@ import SelectDropdown from 'react-native-select-dropdown'
 export default function PropertyEntity(props) {
     return (
         <View style={{ marginBottom: 12 }}>
-            <Text style={{
-                fontSize: 16,
-                fontWeight: 400,
-                marginVertical: 8
-            }}>{props.label}</Text>
+            {props.label != null &&
+                <Text style={{
+                    fontSize: 16,
+                    fontWeight: 400,
+                    marginVertical: 8
+                }}>{props.label}</Text>
+            }
+
 
             {props.type == "string" &&
                 <View style={{
@@ -35,13 +38,13 @@ export default function PropertyEntity(props) {
                 </View>
             }
             {props.type == "select" &&
-                <SelectDropdown 
+                <SelectDropdown
                     defaultButtonText={props.data[props.defaultValueByIndex]}
-                    buttonStyle={{width: "100%"}}
+                    buttonStyle={{ width: "100%" }}
                     data={props.data}
                     onSelect={props.onChangeFunction}
                     defaultValueByIndex={props.defaultValueByIndex}
-                    
+
                 />
             }
         </View>

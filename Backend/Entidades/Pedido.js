@@ -1,5 +1,9 @@
 const { Sequelize, DataTypes } = require('sequelize');
 const { sequelize } = require('../Servico/Conexao');
+const { Usuario } = require('../Entidades/Usuario');
+const { StatusPedido } = require('../Entidades/StatusPedido');
+const { Mesa } = require('../Entidades/Mesa');
+const { ItemPedido } = require('./ItemPedido');
 
 
 
@@ -40,5 +44,7 @@ const Pedido = sequelize.define('Pedido', {
 }, {
   tableName: "pedido",
 });
+
+Pedido.hasMany(ItemPedido, {as:"ItensPedido", foreignKey: "id_pedido"});
 
 module.exports = { Pedido }

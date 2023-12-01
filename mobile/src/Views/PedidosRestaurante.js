@@ -6,35 +6,28 @@ import Button from '../components/button';
 import axios from 'axios';
 import Toast from 'react-native-toast-message';
 import CardPedido from '../components/CardPedido';
-import PropertyEntity from '../components/PropertyEntity';
 
 
 const Pedido = ({ navigation }) => {
-    const [mesa, setMesa] = useState("");
-
     const pressed = () => {
         navigation.navigate("CriarPedido");
     }
     const pedidos = [
-        {
-            id_pedido: 0,
-            situacao: { text: "Situação", value: "", id: 1 },
-            situacao2: { text: "Itens", value: "1, 2, 3", id: 2 },
+        { id_pedido: 0, 
+            situacao: {text: "Situação", value: "", id:1 },
+            situacao2: {text: "Itens", value: "1, 2, 3", id:2 },
         },
-        {
-            id_pedido: 0,
-            situacao: { text: "Situação", value: "", id: 2 },
-            situacao2: { text: "Itens", value: "1, 2, 3", id: 2 },
+        { id_pedido: 0, 
+            situacao: {text: "Situação", value: "", id:2 },
+            situacao2: {text: "Itens", value: "1, 2, 3", id:2 },
         },
-        {
-            id_pedido: 0,
-            situacao: { text: "Situação", value: "", id: 3 },
-            situacao2: { text: "Itens", value: "1, 2, 3", id: 2 },
+        { id_pedido: 0, 
+            situacao: {text: "Situação", value: "", id:3 },
+            situacao2: {text: "Itens", value: "1, 2, 3", id:2 },
         },
-        {
-            id_pedido: 0,
-            situacao: { text: "Situação", value: "", id: 4 },
-            situacao2: { text: "Itens", value: "1, 2, 3", id: 2 },
+        { id_pedido: 0, 
+            situacao: {text: "Situação", value: "", id:4 },
+            situacao2: {text: "Itens", value: "1, 2, 3", id:2 },
         },
     ]
     return (
@@ -51,30 +44,19 @@ const Pedido = ({ navigation }) => {
                         Pedidos
                     </Text>
                 </View>
-                <View style={{ flex: 8, marginHorizontal: 22 }}>
-                    <PropertyEntity 
-                        type="string"
-                        label="Número Mesa:"
-                        onChangeFunction={(e) => {setMesa(e.target.value)}}
-                    />
-                </View>
-                <View style={{ flex: 2 }}>
-                    <Button
-                        title="Cancelar"
-                        style={{
-                            marginTop: 18,
-                            marginBottom: 4,
-                        }}
-                    />
-                    <Button
-                        title="Gerar Pedido"
-                        filled
-                        style={{
-                            marginTop: 18,
-                            marginBottom: 4,
-                        }}
-                    />
-                </View>
+                <ScrollView style={{ flex: 10, backgroundColor: COLORS.white }}>
+                    {pedidos.map((pedido) => {
+                        return (
+                            <CardPedido
+                                pedido={pedido}
+                            ></CardPedido>
+                        )
+                    })
+                    }
+
+                </ScrollView>
+                <Button title="Novo Pedido" filled style={styles.novoPedidoBtn} onPress={pressed}>
+                </Button>   
             </View>
         </SafeAreaView>
     )
