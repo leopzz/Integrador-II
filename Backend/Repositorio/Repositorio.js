@@ -2,6 +2,8 @@ const { RepositorioBase } = require('./RepositorioBase');
 const { Ingrediente } = require('../Entidades/Ingrediente');
 const { DrinkIngrediente } = require('../Entidades/DrinkIngrediente');
 const { Usuario } = require('../Entidades/Usuario');
+const { Pedido } = require('../Entidades/Pedido');
+const { ItemPedido } = require('../Entidades/ItemPedido');
 
 
 class RepositorioIngrediente extends RepositorioBase {
@@ -38,4 +40,13 @@ class RepositorioUsuario extends RepositorioBase {
     }
 }
 
-module.exports = { RepositorioIngrediente , RepositorioIngrediente_Drinks, RepositorioUsuario}
+class RepositorioPedido extends RepositorioBase {
+    constructor() {
+        super(Pedido);
+    }
+    BuscarTodes() {
+        return this.Pedido.findAll();
+    }
+}
+
+module.exports = { RepositorioIngrediente , RepositorioIngrediente_Drinks, RepositorioUsuario, RepositorioPedido}
