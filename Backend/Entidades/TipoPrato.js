@@ -21,4 +21,4 @@ const TipoPrato = sequelize.define('TipoPrato', {
   tableName: "tp_prato",
 });
 
-module.exports = { PratoMontado }
+module.exports = { TipoPrato }

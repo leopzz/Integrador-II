@@ -10,6 +10,8 @@ import Acompanhamento from './Views/Acompanhamento'
 import Drink from './Views/Drink'
 import Entrada from './Views/Entrada'
 import Massa from './Views/Massa'
+import Prato from './Views/Prato'
+import Vinho from './Views/Vinho'
 import Login from './Views/telalogin';
 import Home1 from './Views/home1';
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -26,6 +28,8 @@ function App() {
         <Route path='/Cadastros/Drink' element={<Drink />} />
         <Route path='/Cadastros/Entrada' element={<Entrada />} />
         <Route path='/Cadastros/Massa' element={<Massa />} />
+        <Route path='/Cadastros/Prato' element={<Prato />} />
+        <Route path='/Cadastros/Vinho' element={<Vinho />} />
         <Route path='/telalogin' element={<Login />} />
         <Route path='/Home1' element={<Home1 />} />
 

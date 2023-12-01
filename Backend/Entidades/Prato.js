@@ -1,8 +1,6 @@
 const { Sequelize, DataTypes } = require('sequelize');
 const { sequelize } = require('../Servico/Conexao');
-const { TipoPrato } = require('../Entidades/TipoPrato');
-const { PratoMontado } = require('../Entidades/PratoMontado');
-
+const { TipoPrato } = require('../Entidades/TipoPrato')
 
 
 const Prato = sequelize.define('Prato', {
@@ -16,7 +14,7 @@ const Prato = sequelize.define('Prato', {
     type: DataTypes.INTEGER,
     references: {
       model: TipoPrato,
-      key: 'id_ti_prato'
+      key: 'id_tp_prato'
     }
   },
   vl_preco: {
@@ -31,5 +29,6 @@ const Prato = sequelize.define('Prato', {
 }, {
   tableName: "prato",
 });
-
+Prato.hasOne(TipoPrato ,{foreignKey: { name:'id_tp_prato' , allowNull:true}  })
+TipoPrato.belongsTo(TipoPrato , {foreignKey:'id_tp_prato'})
 module.exports = { Prato }

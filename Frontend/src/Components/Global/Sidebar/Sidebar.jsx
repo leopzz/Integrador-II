@@ -31,8 +31,8 @@ function SidebarMenu() {
                             <MenuItem onClick={() => handleExternalNavigation('http://localhost:5173/Cadastros/Drink')} className='HOVERZAO'> Drinks </MenuItem>
                             <MenuItem onClick={() => handleExternalNavigation('http://localhost:5173/Cadastros/Entrada')} className='HOVERZAO'> Entradas </MenuItem>
                             <MenuItem onClick={() => handleExternalNavigation('http://localhost:5173/Cadastros/Massa')}className='HOVERZAO'> Massas </MenuItem>
-                            <MenuItem className='HOVERZAO'> Pratos </MenuItem>
-                            <MenuItem className='HOVERZAO'> Vinhos </MenuItem>
+                            <MenuItem onClick={() => handleExternalNavigation('http://localhost:5173/Cadastros/Prato')} className='HOVERZAO'> Pratos </MenuItem>
+                            <MenuItem onClick={() => handleExternalNavigation('http://localhost:5173/Cadastros/Vinho')} className='HOVERZAO'> Vinhos </MenuItem>
                         </SubMenu>
                         <SubMenu label="Ingredientes" className='HOVERZAO'>
                             <MenuItem onClick={() => handleExternalNavigation('http://localhost:5173/Cadastros/Ingrediente')} className='HOVERZAO'>Ingredientes Pizza</MenuItem>
